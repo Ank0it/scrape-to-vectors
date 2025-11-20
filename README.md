@@ -1,4 +1,4 @@
-# 🚀 groq-datastax-rag — End‑to‑End WebLoader RAG (mind-bending edition)
+# End‑to‑End WebLoader RAG (mind-bending edition)
 
 An end‑to‑end Retrieval‑Augmented Generation pipeline that scrapes the web, turns pages into embeddings, stores vectors in DataStax AstraDB via Cassio, and performs retrieval + generation with Groq through LangChain. This README skips setup steps and focuses on the idea, architecture, and provocative questions to spark exploration.
 
@@ -25,6 +25,19 @@ A production‑ready RAG pipeline that:
 
 ## Architecture (visual)
 Web scraper → Splitter → Embeddings → AstraDB (Cassio) → Retriever → Groq LLM → Answer
+
+```mermaid
+flowchart LR
+  A[Web pages] --> B[WebBaseLoader + BS4]
+  B --> C[Chunker<br/>RecursiveCharacterTextSplitter]
+  C --> D[Embeddings<br/>HuggingFace / BGE]
+  D --> E[AstraDB / Cassandra<br/>(Cassio)]
+  E --> F[Retriever<br/>(similarity / MMR / kNN)]
+  F --> G[Retrieval Chain]
+  F --> H[Vector queries / analytics]
+  G --> I[Groq LLM<br/>(langchain-groq)]
+  I --> J[Answer + provenance / citations]
+```
 
 ASCII diagram for quick visual:
 
@@ -88,4 +101,3 @@ ASCII diagram for quick visual:
 ## License
 MIT — build boldly, cite responsibly.
 
-Want a compact diagram in SVG or a CI workflow to auto‑run parts of the pipeline on push? I can generate them next.
