@@ -1,0 +1,15 @@
+langchain
+langchain-core
+langchain-community
+langchain-groq
+langchain-text-splitters
+langchain-classic
+cassio
+cassandra-driver
+python-dotenv
+beautifulsoup4
+sentence-transformers
+transformers
+huggingface-hub
+faiss-cpu
+numpy
